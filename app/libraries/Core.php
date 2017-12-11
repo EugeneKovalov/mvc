@@ -12,7 +12,7 @@
         protected $params = [];
 
         public function __construct()
-        {
+            {
             $url = $this->gerUrl();
 
             // Look in controllers for first value
