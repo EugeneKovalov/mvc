@@ -13,4 +13,4 @@ define('APPROOT', dirname(dirname(__FILE__)));
 define('URLROOT', 'http://localhost:8888/MVC');
 
 // Site Name
-define('SITENAME', 'MVC');
+define('SITENAME', 'SharePosts');
