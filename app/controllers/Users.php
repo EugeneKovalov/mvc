@@ -72,6 +72,7 @@ class Users extends Controller
                 // Register User
                 if ($this->userModel->register($data))
                 {
+                    flash('register_success', 'You are registered and can log in');
                     redirect('users/login');
                 } else {
                     die('Something went wrong');
@@ -126,6 +127,14 @@ class Users extends Controller
             else if (strlen($data['password']) < 6 )
             {
                 $data['password_err'] = 'Password must be at least 6 characters';
+            }
+
+            // Check for user/email
+            if ($this->userModel->findUserByEmail($data['email']))
+            {
+                // User found
+            } else {
+                $data['email_err'] = 'No user found';
             }
 
             if (empty($data['email_err']) && empty($data['password_err']))
