@@ -48,12 +48,21 @@ class User
         $row = $this->db->single();
 
         // Check row
-        if ($this->db->rowCount() > 0)
-        {
+        if ($this->db->rowCount() > 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
+    }
+
+    // Get User by ID
+    public function getUserById($id)
+    {
+        $this->db->query('SELECT * FROM users WHERE id = :id');
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        return $row;
     }
 }

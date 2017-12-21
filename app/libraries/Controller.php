@@ -4,7 +4,8 @@
  * loads the models and views
  */
 
-class Controller {
+class Controller
+{
     // Load model
     public function model($model)
     {

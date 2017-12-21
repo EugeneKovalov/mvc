@@ -9,6 +9,7 @@ class Posts extends Controller
         }
 
         $this->postModel = $this->model('Post');
+        $this->userModel = $this->model('User');
     }
 
     public function index()
@@ -51,18 +52,25 @@ class Posts extends Controller
             if(empty($data['title_err']) && empty($data['body_err']))
             {
                 // Validated
-                if($this->postModel->addPost($data)){
+                if($this->postModel->addPost($data))
+                {
                     flash('post_message', 'Post Added');
                     redirect('posts');
-                } else {
+                }
+                else
+                {
                     die('Something went wrong');
                 }
-            } else {
+            }
+            else
+            {
                 // Load view with errors
                 $this->view('posts/add', $data);
             }
 
-        } else {
+        }
+        else
+        {
             $data = [
                 'title' => '',
                 'body' => ''
@@ -70,5 +78,18 @@ class Posts extends Controller
 
             $this->view('posts/add', $data);
         }
+    }
+
+    public function show($id)
+    {
+        $post = $this->postModel->getPostById($id);
+        $user = $this->userModel->getUserById($post->user_id);
+
+        $data = [
+            'post' => $post,
+            'user' => $user
+        ];
+
+        $this->view('posts/show', $data);
     }
 }
