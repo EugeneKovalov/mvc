@@ -36,9 +36,12 @@ class Post
         $this->db->bind(':body', $data['body']);
 
         // Execute
-        if($this->db->execute()){
+        if($this->db->execute())
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
@@ -52,9 +55,29 @@ class Post
         $this->db->bind(':body', $data['body']);
 
         // Execute
-        if($this->db->execute()){
+        if($this->db->execute())
+        {
             return true;
-        } else {
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function deletePost($id)
+    {
+        $this->db->query('DELETE FROM posts WHERE id = :id');
+        // Bind values
+        $this->db->bind(':id', $id);
+
+        // Execute
+        if($this->db->execute())
+        {
+            return true;
+        }
+        else
+        {
             return false;
         }
     }
